@@ -1,0 +1,3 @@
+mutation PlaySong($username: String!, $query: String!) {
+    playSong(username: $username, query: $query)
+}

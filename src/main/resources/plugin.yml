@@ -1,0 +1,15 @@
+name: KuramaMC
+version: '1.0'
+main: com.mateie.kuramamc.KuramaMC
+api-version: 1.19
+commands:
+    link:
+        description: Link your discord account to minecraft
+        usage: Usage /link <code> (Generated from the bot)
+    unlink:
+        description: Unlink your minecraft account from discord
+        usage: Usage /unlink
+    music:
+        description: Play music in discord
+        usage: /music <play>
+        default: true

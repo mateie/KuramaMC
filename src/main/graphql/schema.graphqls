@@ -1,0 +1,15 @@
+type Query {
+  fetchUsers: [String!]!
+}
+
+type Mutation {
+  linkMinecraft(username: String!, code: String!): String!
+  unlinkMinecraft(username: String!): String!
+
+  playSong(username: String!, query: String!): String!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

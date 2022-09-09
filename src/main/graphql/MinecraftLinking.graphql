@@ -1,0 +1,7 @@
+mutation LinkMinecraft($username: String!, $code: String!) {
+    linkMinecraft(username: $username, code: $code)
+}
+
+mutation UnlinkMinecraft($username: String!) {
+    unlinkMinecraft(username: $username)
+}
