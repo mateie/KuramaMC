@@ -30,6 +30,7 @@ dependencies {
 }
 
 apollo {
+    srcDir "src/main/kotlin/com/mateie/kuramamc/gql"
     packageName.set("com.mateie.kuramamc")
 }
 
