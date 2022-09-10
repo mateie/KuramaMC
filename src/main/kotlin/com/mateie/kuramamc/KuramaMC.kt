@@ -8,13 +8,13 @@ import com.mateie.kuramamc.commands.LinkCommand
 import com.mateie.kuramamc.commands.UnlinkCommand
 import com.mateie.kuramamc.commands.music.MusicCommand
 import com.mateie.kuramamc.commands.music.MusicPlayCommand
+import com.mateie.kuramamc.commands.music.MusicSkipCommand
+import com.mateie.kuramamc.commands.music.MusicStopCommand
 import com.mateie.kuramamc.completers.MusicSubCommands
 import org.bukkit.Bukkit
 
 open class KuramaMC : SuspendingJavaPlugin() {
     companion object {
-        var instance: KuramaMC? = null
-            private set
         val client: ApolloClient = ApolloClient.Builder().serverUrl("http://localhost:4000").webSocketServerUrl("http://localhost:4000").build()
     }
 
@@ -28,6 +28,8 @@ open class KuramaMC : SuspendingJavaPlugin() {
         getCommand("music")!!.setSuspendingExecutor(MusicCommand)
         getCommand("music")!!.setSuspendingTabCompleter(MusicSubCommands)
         MusicCommand.addSubcommand("play", MusicPlayCommand)
+        MusicCommand.addSubcommand("stop", MusicStopCommand)
+        MusicCommand.addSubcommand("skip", MusicSkipCommand)
     }
 
     override suspend fun onDisableAsync() {
