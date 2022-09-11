@@ -6,10 +6,7 @@ import com.github.shynixn.mccoroutine.bukkit.setSuspendingExecutor
 import com.github.shynixn.mccoroutine.bukkit.setSuspendingTabCompleter
 import com.mateie.kuramamc.commands.LinkCommand
 import com.mateie.kuramamc.commands.UnlinkCommand
-import com.mateie.kuramamc.commands.music.MusicCommand
-import com.mateie.kuramamc.commands.music.MusicPlayCommand
-import com.mateie.kuramamc.commands.music.MusicSkipCommand
-import com.mateie.kuramamc.commands.music.MusicStopCommand
+import com.mateie.kuramamc.commands.music.*
 import com.mateie.kuramamc.completers.MusicSubCommands
 import org.bukkit.Bukkit
 
@@ -28,6 +25,7 @@ open class KuramaMC : SuspendingJavaPlugin() {
         getCommand("music")!!.setSuspendingExecutor(MusicCommand)
         getCommand("music")!!.setSuspendingTabCompleter(MusicSubCommands)
         MusicCommand.addSubcommand("play", MusicPlayCommand)
+        MusicCommand.addSubcommand("add", MusicAddCommand)
         MusicCommand.addSubcommand("stop", MusicStopCommand)
         MusicCommand.addSubcommand("skip", MusicSkipCommand)
     }
