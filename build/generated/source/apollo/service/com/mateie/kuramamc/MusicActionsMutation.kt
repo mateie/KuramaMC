@@ -11,15 +11,16 @@ import com.apollographql.apollo3.api.CustomScalarAdapters
 import com.apollographql.apollo3.api.Mutation
 import com.apollographql.apollo3.api.json.JsonWriter
 import com.apollographql.apollo3.api.obj
-import com.mateie.kuramamc.adapter.SkipSongMutation_ResponseAdapter
-import com.mateie.kuramamc.adapter.SkipSongMutation_VariablesAdapter
-import com.mateie.kuramamc.selections.SkipSongMutationSelections
+import com.mateie.kuramamc.adapter.MusicActionsMutation_ResponseAdapter
+import com.mateie.kuramamc.adapter.MusicActionsMutation_VariablesAdapter
+import com.mateie.kuramamc.selections.MusicActionsMutationSelections
 import kotlin.String
 import kotlin.Unit
 
-public data class SkipSongMutation(
+public data class MusicActionsMutation(
   public val username: String,
-) : Mutation<SkipSongMutation.Data> {
+  public val action: String,
+) : Mutation<MusicActionsMutation.Data> {
   public override fun id(): String = OPERATION_ID
 
   public override fun document(): String = OPERATION_DOCUMENT
@@ -28,37 +29,38 @@ public data class SkipSongMutation(
 
   public override fun serializeVariables(writer: JsonWriter,
       customScalarAdapters: CustomScalarAdapters): Unit {
-    SkipSongMutation_VariablesAdapter.toJson(writer, customScalarAdapters, this)
+    MusicActionsMutation_VariablesAdapter.toJson(writer, customScalarAdapters, this)
   }
 
-  public override fun adapter(): Adapter<Data> = SkipSongMutation_ResponseAdapter.Data.obj()
+  public override fun adapter(): Adapter<Data> = MusicActionsMutation_ResponseAdapter.Data.obj()
 
   public override fun rootField(): CompiledField = CompiledField.Builder(
     name = "data",
     type = com.mateie.kuramamc.type.Mutation.type
   )
-  .selections(selections = SkipSongMutationSelections.__root)
+  .selections(selections = MusicActionsMutationSelections.__root)
   .build()
 
   public data class Data(
-    public val skipSong: String,
+    public val music: String,
   ) : Mutation.Data
 
   public companion object {
     public const val OPERATION_ID: String =
-        "90469a29af4daafffa72a4bcfb47f75a203e5193e0bab4db35e57eb73a139007"
+        "98cc6b3d2ee3129499d0d5f2c15893bc0e89f004dd5acb17e1af1d38820f4a19"
 
     /**
      * The minimized GraphQL document being sent to the server to save a few bytes.
      * The un-minimized version is:
      *
-     * mutation SkipSong($username: String!) {
-     *   skipSong(username: $username)
+     * mutation MusicActions($username: String!, $action: String!) {
+     *   music(username: $username, action: $action)
      * }
      */
     public val OPERATION_DOCUMENT: String
-      get() = "mutation SkipSong(${'$'}username: String!) { skipSong(username: ${'$'}username) }"
+      get() =
+          "mutation MusicActions(${'$'}username: String!, ${'$'}action: String!) { music(username: ${'$'}username, action: ${'$'}action) }"
 
-    public const val OPERATION_NAME: String = "SkipSong"
+    public const val OPERATION_NAME: String = "MusicActions"
   }
 }

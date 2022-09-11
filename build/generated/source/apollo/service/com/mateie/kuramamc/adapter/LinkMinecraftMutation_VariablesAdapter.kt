@@ -10,20 +10,22 @@ import com.apollographql.apollo3.api.CustomScalarAdapters
 import com.apollographql.apollo3.api.StringAdapter
 import com.apollographql.apollo3.api.json.JsonReader
 import com.apollographql.apollo3.api.json.JsonWriter
-import com.mateie.kuramamc.SkipSongMutation
+import com.mateie.kuramamc.LinkMinecraftMutation
 import kotlin.IllegalStateException
 import kotlin.Unit
 
-public object SkipSongMutation_VariablesAdapter : Adapter<SkipSongMutation> {
+public object LinkMinecraftMutation_VariablesAdapter : Adapter<LinkMinecraftMutation> {
   public override fun fromJson(reader: JsonReader, customScalarAdapters: CustomScalarAdapters):
-      SkipSongMutation = throw IllegalStateException("Input type used in output position")
+      LinkMinecraftMutation = throw IllegalStateException("Input type used in output position")
 
   public override fun toJson(
     writer: JsonWriter,
     customScalarAdapters: CustomScalarAdapters,
-    `value`: SkipSongMutation,
+    `value`: LinkMinecraftMutation,
   ): Unit {
     writer.name("username")
     StringAdapter.toJson(writer, customScalarAdapters, value.username)
+    writer.name("code")
+    StringAdapter.toJson(writer, customScalarAdapters, value.code)
   }
 }

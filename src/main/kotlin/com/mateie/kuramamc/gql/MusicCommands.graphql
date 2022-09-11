@@ -1,11 +1,7 @@
-mutation PlaySong($username: String!, $query: String!) {
-    playSong(username: $username, query: $query)
+mutation MusicPlay($username: String!, $action: String!, $query: String!) {
+    music(username: $username, action: $action, query: $query)
 }
 
-mutation SkipSong($username: String!) {
-    skipSong(username: $username)
-}
-
-mutation StopPlayer($username: String!) {
-    stopPlayer(username: $username)
+mutation MusicActions($username: String!, $action: String!) {
+    music(username: $username, action: $action)
 }

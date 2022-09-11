@@ -6,9 +6,7 @@ type Mutation {
   linkMinecraft(username: String!, code: String!): String!
   unlinkMinecraft(username: String!): String!
 
-  playSong(username: String!, query: String!): String!
-  skipSong(username: String!): String!
-  stopPlayer(username: String!): String!
+  music(username: String!, action: String!, query: String): String!
 }
 
 schema {

@@ -11,15 +11,16 @@ import com.apollographql.apollo3.api.CustomScalarAdapters
 import com.apollographql.apollo3.api.Mutation
 import com.apollographql.apollo3.api.json.JsonWriter
 import com.apollographql.apollo3.api.obj
-import com.mateie.kuramamc.adapter.StopPlayerMutation_ResponseAdapter
-import com.mateie.kuramamc.adapter.StopPlayerMutation_VariablesAdapter
-import com.mateie.kuramamc.selections.StopPlayerMutationSelections
+import com.mateie.kuramamc.adapter.LinkMinecraftMutation_ResponseAdapter
+import com.mateie.kuramamc.adapter.LinkMinecraftMutation_VariablesAdapter
+import com.mateie.kuramamc.selections.LinkMinecraftMutationSelections
 import kotlin.String
 import kotlin.Unit
 
-public data class StopPlayerMutation(
+public data class LinkMinecraftMutation(
   public val username: String,
-) : Mutation<StopPlayerMutation.Data> {
+  public val code: String,
+) : Mutation<LinkMinecraftMutation.Data> {
   public override fun id(): String = OPERATION_ID
 
   public override fun document(): String = OPERATION_DOCUMENT
@@ -28,38 +29,38 @@ public data class StopPlayerMutation(
 
   public override fun serializeVariables(writer: JsonWriter,
       customScalarAdapters: CustomScalarAdapters): Unit {
-    StopPlayerMutation_VariablesAdapter.toJson(writer, customScalarAdapters, this)
+    LinkMinecraftMutation_VariablesAdapter.toJson(writer, customScalarAdapters, this)
   }
 
-  public override fun adapter(): Adapter<Data> = StopPlayerMutation_ResponseAdapter.Data.obj()
+  public override fun adapter(): Adapter<Data> = LinkMinecraftMutation_ResponseAdapter.Data.obj()
 
   public override fun rootField(): CompiledField = CompiledField.Builder(
     name = "data",
     type = com.mateie.kuramamc.type.Mutation.type
   )
-  .selections(selections = StopPlayerMutationSelections.__root)
+  .selections(selections = LinkMinecraftMutationSelections.__root)
   .build()
 
   public data class Data(
-    public val stopPlayer: String,
+    public val linkMinecraft: String,
   ) : Mutation.Data
 
   public companion object {
     public const val OPERATION_ID: String =
-        "bce1921c65f4771cc0fd16efbfff8409a4dc8aa8ccb074383e0410439ce6c018"
+        "e2ac77d8514a3d15a864efdd04fc0b42f0259c6944915ca8afd02c683826ebed"
 
     /**
      * The minimized GraphQL document being sent to the server to save a few bytes.
      * The un-minimized version is:
      *
-     * mutation StopPlayer($username: String!) {
-     *   stopPlayer(username: $username)
+     * mutation LinkMinecraft($username: String!, $code: String!) {
+     *   linkMinecraft(username: $username, code: $code)
      * }
      */
     public val OPERATION_DOCUMENT: String
       get() =
-          "mutation StopPlayer(${'$'}username: String!) { stopPlayer(username: ${'$'}username) }"
+          "mutation LinkMinecraft(${'$'}username: String!, ${'$'}code: String!) { linkMinecraft(username: ${'$'}username, code: ${'$'}code) }"
 
-    public const val OPERATION_NAME: String = "StopPlayer"
+    public const val OPERATION_NAME: String = "LinkMinecraft"
   }
 }

@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.20'
     id 'com.github.johnrengelman.shadow' version '2.0.4'
@@ -10,8 +12,8 @@ version = '1.0'
 repositories {
     mavenCentral()
     maven {
-        name = 'spigotmc-repo'
-        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+        name = 'papermc-repo'
+        url = 'https://repo.papermc.io/repository/maven-public/'
     }
     maven {
         name = 'sonatype'
@@ -20,13 +22,12 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT'
-    compileOnly 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'
+    compileOnly 'io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT'
+    implementation 'io.github.cdimascio:dotenv-kotlin:6.3.1'
     implementation 'org.jetbrains.kotlin:kotlin-script-runtime:1.7.10'
     implementation 'com.apollographql.apollo3:apollo-runtime:3.5.0'
     implementation 'com.github.shynixn.mccoroutine:mccoroutine-bukkit-api:2.4.0'
     implementation 'com.github.shynixn.mccoroutine:mccoroutine-bukkit-core:2.4.0'
-    annotationProcessor 'org.spigotmc:plugin-annotations:1.2.3-SNAPSHOT'
 }
 
 apollo {

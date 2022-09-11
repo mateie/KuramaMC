@@ -13,10 +13,10 @@ import com.apollographql.apollo3.api.notNull
 import com.mateie.kuramamc.type.GraphQLString
 import kotlin.collections.List
 
-public object SkipSongMutationSelections {
+public object UnlinkMinecraftMutationSelections {
   public val __root: List<CompiledSelection> = listOf(
         CompiledField.Builder(
-          name = "skipSong",
+          name = "unlinkMinecraft",
           type = GraphQLString.type.notNull()
         ).arguments(listOf(
           CompiledArgument.Builder("username", CompiledVariable("username")).build()

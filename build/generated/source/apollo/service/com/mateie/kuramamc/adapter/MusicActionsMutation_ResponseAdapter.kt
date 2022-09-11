@@ -10,38 +10,38 @@ import com.apollographql.apollo3.api.CustomScalarAdapters
 import com.apollographql.apollo3.api.StringAdapter
 import com.apollographql.apollo3.api.json.JsonReader
 import com.apollographql.apollo3.api.json.JsonWriter
-import com.mateie.kuramamc.SkipSongMutation
+import com.mateie.kuramamc.MusicActionsMutation
 import kotlin.String
 import kotlin.Unit
 import kotlin.collections.List
 
-public object SkipSongMutation_ResponseAdapter {
-  public object Data : Adapter<SkipSongMutation.Data> {
-    public val RESPONSE_NAMES: List<String> = listOf("skipSong")
+public object MusicActionsMutation_ResponseAdapter {
+  public object Data : Adapter<MusicActionsMutation.Data> {
+    public val RESPONSE_NAMES: List<String> = listOf("music")
 
     public override fun fromJson(reader: JsonReader, customScalarAdapters: CustomScalarAdapters):
-        SkipSongMutation.Data {
-      var _skipSong: String? = null
+        MusicActionsMutation.Data {
+      var _music: String? = null
 
       while(true) {
         when (reader.selectName(RESPONSE_NAMES)) {
-          0 -> _skipSong = StringAdapter.fromJson(reader, customScalarAdapters)
+          0 -> _music = StringAdapter.fromJson(reader, customScalarAdapters)
           else -> break
         }
       }
 
-      return SkipSongMutation.Data(
-        skipSong = _skipSong!!
+      return MusicActionsMutation.Data(
+        music = _music!!
       )
     }
 
     public override fun toJson(
       writer: JsonWriter,
       customScalarAdapters: CustomScalarAdapters,
-      `value`: SkipSongMutation.Data,
+      `value`: MusicActionsMutation.Data,
     ): Unit {
-      writer.name("skipSong")
-      StringAdapter.toJson(writer, customScalarAdapters, value.skipSong)
+      writer.name("music")
+      StringAdapter.toJson(writer, customScalarAdapters, value.music)
     }
   }
 }

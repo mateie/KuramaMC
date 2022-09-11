@@ -28,7 +28,7 @@ object MusicCommand : SuspendingCommandExecutor {
             return false
         }
 
-        return commands[args[0]]!!.onCommand(sender, command, args.drop(1).toTypedArray())
+        return commands[args[0]]!!.onCommand(sender, command, args[0], args.drop(1).toTypedArray())
     }
 
     fun addSubcommand(name: String, subCommand: SubCommand) {

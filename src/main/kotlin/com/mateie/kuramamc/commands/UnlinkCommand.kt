@@ -20,14 +20,14 @@ object UnlinkCommand : SuspendingCommandExecutor{
         if(args.isNotEmpty()) return false
 
         try {
-            val res = KuramaMC.client.mutation(UnlinkMinecraftMutation(sender.displayName)).execute()
+            val res = KuramaMC.apollo.mutation(UnlinkMinecraftMutation(sender.name)).execute()
 
             if(res.errors?.isNotEmpty() == true) {
                 sender.sendMessage(res.errors!![0].message)
                 return true
             }
 
-            sender.sendMessage(res.data?.unlinkMinecraft)
+            sender.sendMessage(res.data!!.unlinkMinecraft)
 
         } catch (e: ApolloException) {
             e.printStackTrace()

@@ -15,14 +15,14 @@ object LinkCommand : SuspendingCommandExecutor{
         if(args.isEmpty()) return false
 
         try {
-            val res = KuramaMC.client.mutation(LinkMinecraftMutation(sender.displayName, args[0])).execute()
+            val res = KuramaMC.apollo.mutation(LinkMinecraftMutation(sender.name, args[0])).execute()
 
             if(res.errors?.isNotEmpty() == true) {
                 sender.sendMessage(res.errors!![0].message)
-                return true;
+                return true
             }
 
-            sender.sendMessage(res.data?.linkMinecraft)
+            sender.sendMessage(res.data!!.linkMinecraft)
 
         } catch (e: ApolloException) {
             e.printStackTrace()

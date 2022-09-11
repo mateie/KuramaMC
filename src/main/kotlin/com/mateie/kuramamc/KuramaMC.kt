@@ -15,7 +15,7 @@ import org.bukkit.Bukkit
 
 open class KuramaMC : SuspendingJavaPlugin() {
     companion object {
-        val client: ApolloClient = ApolloClient.Builder().serverUrl("http://localhost:4000").webSocketServerUrl("http://localhost:4000").build()
+        val apollo: ApolloClient = ApolloClient.Builder().serverUrl(System.getenv("BOT_URL") ?: "http://localhost:4000").build()
     }
 
     override suspend fun onEnableAsync() {

@@ -6,7 +6,6 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import org.bukkit.util.StringUtil
-import java.util.Collections
 
 object MusicSubCommands : SuspendingTabCompleter {
     override suspend fun onTabComplete(
