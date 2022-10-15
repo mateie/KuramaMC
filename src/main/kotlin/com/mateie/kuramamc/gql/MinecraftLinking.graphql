@@ -1,7 +1,15 @@
-mutation LinkMinecraft($username: String!, $code: String!) {
-    linkMinecraft(username: $username, code: $code)
+mutation linkServer($code: String!, $ip: String!) {
+    linkServer(code: $code, ip: $ip)
 }
 
-mutation UnlinkMinecraft($username: String!) {
-    unlinkMinecraft(username: $username)
+mutation checkPlayer($username: String!) {
+    checkPlayer(username: $username)
+}
+
+mutation linkPlayer($username: String!, $code: String!) {
+    linkPlayer(username: $username, code: $code)
+}
+
+mutation unlinkPlayer($username: String!) {
+    unlinkPlayer(username: $username)
 }

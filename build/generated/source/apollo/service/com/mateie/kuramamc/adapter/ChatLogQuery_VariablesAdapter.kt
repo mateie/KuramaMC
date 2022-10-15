@@ -10,22 +10,24 @@ import com.apollographql.apollo3.api.CustomScalarAdapters
 import com.apollographql.apollo3.api.StringAdapter
 import com.apollographql.apollo3.api.json.JsonReader
 import com.apollographql.apollo3.api.json.JsonWriter
-import com.mateie.kuramamc.MusicActionsMutation
+import com.mateie.kuramamc.ChatLogQuery
 import kotlin.IllegalStateException
 import kotlin.Unit
 
-public object MusicActionsMutation_VariablesAdapter : Adapter<MusicActionsMutation> {
+public object ChatLogQuery_VariablesAdapter : Adapter<ChatLogQuery> {
   public override fun fromJson(reader: JsonReader, customScalarAdapters: CustomScalarAdapters):
-      MusicActionsMutation = throw IllegalStateException("Input type used in output position")
+      ChatLogQuery = throw IllegalStateException("Input type used in output position")
 
   public override fun toJson(
     writer: JsonWriter,
     customScalarAdapters: CustomScalarAdapters,
-    `value`: MusicActionsMutation,
+    `value`: ChatLogQuery,
   ): Unit {
     writer.name("username")
     StringAdapter.toJson(writer, customScalarAdapters, value.username)
-    writer.name("action")
-    StringAdapter.toJson(writer, customScalarAdapters, value.action)
+    writer.name("message")
+    StringAdapter.toJson(writer, customScalarAdapters, value.message)
+    writer.name("ip")
+    StringAdapter.toJson(writer, customScalarAdapters, value.ip)
   }
 }

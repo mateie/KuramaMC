@@ -10,38 +10,38 @@ import com.apollographql.apollo3.api.CustomScalarAdapters
 import com.apollographql.apollo3.api.StringAdapter
 import com.apollographql.apollo3.api.json.JsonReader
 import com.apollographql.apollo3.api.json.JsonWriter
-import com.mateie.kuramamc.MusicActionsMutation
+import com.mateie.kuramamc.LinkServerMutation
 import kotlin.String
 import kotlin.Unit
 import kotlin.collections.List
 
-public object MusicActionsMutation_ResponseAdapter {
-  public object Data : Adapter<MusicActionsMutation.Data> {
-    public val RESPONSE_NAMES: List<String> = listOf("music")
+public object LinkServerMutation_ResponseAdapter {
+  public object Data : Adapter<LinkServerMutation.Data> {
+    public val RESPONSE_NAMES: List<String> = listOf("linkServer")
 
     public override fun fromJson(reader: JsonReader, customScalarAdapters: CustomScalarAdapters):
-        MusicActionsMutation.Data {
-      var _music: String? = null
+        LinkServerMutation.Data {
+      var _linkServer: String? = null
 
       while(true) {
         when (reader.selectName(RESPONSE_NAMES)) {
-          0 -> _music = StringAdapter.fromJson(reader, customScalarAdapters)
+          0 -> _linkServer = StringAdapter.fromJson(reader, customScalarAdapters)
           else -> break
         }
       }
 
-      return MusicActionsMutation.Data(
-        music = _music!!
+      return LinkServerMutation.Data(
+        linkServer = _linkServer!!
       )
     }
 
     public override fun toJson(
       writer: JsonWriter,
       customScalarAdapters: CustomScalarAdapters,
-      `value`: MusicActionsMutation.Data,
+      `value`: LinkServerMutation.Data,
     ): Unit {
-      writer.name("music")
-      StringAdapter.toJson(writer, customScalarAdapters, value.music)
+      writer.name("linkServer")
+      StringAdapter.toJson(writer, customScalarAdapters, value.linkServer)
     }
   }
 }

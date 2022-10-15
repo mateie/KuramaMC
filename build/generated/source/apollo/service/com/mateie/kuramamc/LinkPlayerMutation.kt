@@ -12,17 +12,16 @@ import com.apollographql.apollo3.api.CustomScalarAdapters
 import com.apollographql.apollo3.api.Mutation
 import com.apollographql.apollo3.api.json.JsonWriter
 import com.apollographql.apollo3.api.obj
-import com.mateie.kuramamc.adapter.MusicPlayMutation_ResponseAdapter
-import com.mateie.kuramamc.adapter.MusicPlayMutation_VariablesAdapter
-import com.mateie.kuramamc.selections.MusicPlayMutationSelections
+import com.mateie.kuramamc.adapter.LinkPlayerMutation_ResponseAdapter
+import com.mateie.kuramamc.adapter.LinkPlayerMutation_VariablesAdapter
+import com.mateie.kuramamc.selections.LinkPlayerMutationSelections
 import kotlin.String
 import kotlin.Unit
 
-public data class MusicPlayMutation(
+public data class LinkPlayerMutation(
   public val username: String,
-  public val action: String,
-  public val query: String,
-) : Mutation<MusicPlayMutation.Data> {
+  public val code: String,
+) : Mutation<LinkPlayerMutation.Data> {
   public override fun id(): String = OPERATION_ID
 
   public override fun document(): String = OPERATION_DOCUMENT
@@ -31,39 +30,39 @@ public data class MusicPlayMutation(
 
   public override fun serializeVariables(writer: JsonWriter,
       customScalarAdapters: CustomScalarAdapters): Unit {
-    MusicPlayMutation_VariablesAdapter.toJson(writer, customScalarAdapters, this)
+    LinkPlayerMutation_VariablesAdapter.toJson(writer, customScalarAdapters, this)
   }
 
-  public override fun adapter(): Adapter<Data> = MusicPlayMutation_ResponseAdapter.Data.obj()
+  public override fun adapter(): Adapter<Data> = LinkPlayerMutation_ResponseAdapter.Data.obj()
 
   public override fun rootField(): CompiledField = CompiledField.Builder(
     name = "data",
     type = com.mateie.kuramamc.type.Mutation.type
   )
-  .selections(selections = MusicPlayMutationSelections.__root)
+  .selections(selections = LinkPlayerMutationSelections.__root)
   .build()
 
-  @ApolloAdaptableWith(MusicPlayMutation_ResponseAdapter.Data::class)
+  @ApolloAdaptableWith(LinkPlayerMutation_ResponseAdapter.Data::class)
   public data class Data(
-    public val music: String,
+    public val linkPlayer: String,
   ) : Mutation.Data
 
   public companion object {
     public const val OPERATION_ID: String =
-        "2a139503813cd503959eea91f10218592a3ca3ca59fdf5a70e4cabea8a0c92e8"
+        "2f03c538dda1eeb6aa72cac1e9ede449a7db26eff71063ae37d6f087f67d9f4c"
 
     /**
      * The minimized GraphQL document being sent to the server to save a few bytes.
      * The un-minimized version is:
      *
-     * mutation MusicPlay($username: String!, $action: String!, $query: String!) {
-     *   music(username: $username, action: $action, query: $query)
+     * mutation linkPlayer($username: String!, $code: String!) {
+     *   linkPlayer(username: $username, code: $code)
      * }
      */
     public val OPERATION_DOCUMENT: String
       get() =
-          "mutation MusicPlay(${'$'}username: String!, ${'$'}action: String!, ${'$'}query: String!) { music(username: ${'$'}username, action: ${'$'}action, query: ${'$'}query) }"
+          "mutation linkPlayer(${'$'}username: String!, ${'$'}code: String!) { linkPlayer(username: ${'$'}username, code: ${'$'}code) }"
 
-    public const val OPERATION_NAME: String = "MusicPlay"
+    public const val OPERATION_NAME: String = "linkPlayer"
   }
 }

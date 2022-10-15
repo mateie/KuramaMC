@@ -3,12 +3,12 @@ package com.mateie.kuramamc.commands
 import com.apollographql.apollo3.exception.ApolloException
 import com.github.shynixn.mccoroutine.bukkit.SuspendingCommandExecutor
 import com.mateie.kuramamc.KuramaMC
-import com.mateie.kuramamc.UnlinkMinecraftMutation
+import com.mateie.kuramamc.UnlinkPlayerMutation
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 
-object UnlinkCommand : SuspendingCommandExecutor{
+object PlayerUnlinkCommand : SuspendingCommandExecutor{
     override suspend fun onCommand(
         sender: CommandSender,
         command: Command,
@@ -20,14 +20,14 @@ object UnlinkCommand : SuspendingCommandExecutor{
         if(args.isNotEmpty()) return false
 
         try {
-            val res = KuramaMC.apollo.mutation(UnlinkMinecraftMutation(sender.name)).execute()
+            val res = KuramaMC.apollo.mutation(UnlinkPlayerMutation(sender.name)).execute()
 
             if(res.errors?.isNotEmpty() == true) {
                 sender.sendMessage(res.errors!![0].message)
                 return true
             }
 
-            sender.sendMessage(res.data!!.unlinkMinecraft)
+            sender.sendMessage(res.data!!.unlinkPlayer)
 
         } catch (e: ApolloException) {
             e.printStackTrace()

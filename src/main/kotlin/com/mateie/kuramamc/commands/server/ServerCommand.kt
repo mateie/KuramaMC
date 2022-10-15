@@ -1,14 +1,11 @@
-package com.mateie.kuramamc.commands.music
+package com.mateie.kuramamc.commands.server
 
 import com.github.shynixn.mccoroutine.bukkit.SuspendingCommandExecutor
-import com.mateie.kuramamc.CheckPlayerMutation
-import com.mateie.kuramamc.KuramaMC
 import com.mateie.kuramamc.structures.SubCommand
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
-import org.bukkit.entity.Player
 
-object MusicCommand : SuspendingCommandExecutor {
+object ServerCommand : SuspendingCommandExecutor {
     val names = arrayListOf<String>()
     val commands: HashMap<String, SubCommand> = HashMap()
 
@@ -18,20 +15,8 @@ object MusicCommand : SuspendingCommandExecutor {
         label: String,
         args: Array<out String>
     ): Boolean {
-        if(sender !is Player) {
-            sender.sendMessage("This command can be used only by a player")
-            return false
-        }
-
-        val res = KuramaMC.apollo.mutation(CheckPlayerMutation(sender.name)).execute()
-
-        if(res.errors?.isNotEmpty() == true) {
-            sender.sendMessage(res.errors!![0].message)
-            return true
-        }
-
-        if(!res.data!!.checkPlayer) {
-            sender.sendMessage("Your Minecraft username is not linked to any discord account")
+        if(!sender.isOp) {
+            sender.sendMessage("Only OPed people can use this command")
             return true
         }
 
@@ -45,8 +30,8 @@ object MusicCommand : SuspendingCommandExecutor {
         return commands[args[0]]!!.onCommand(sender, command, args[0], args.drop(1).toTypedArray())
     }
 
-    fun addSubcommand(name: String, subCommand: SubCommand) {
-        commands[name] = subCommand
+    fun addSubcommand(name: String, subcommand: SubCommand) {
+        commands[name] = subcommand
         names.add(name)
     }
 }

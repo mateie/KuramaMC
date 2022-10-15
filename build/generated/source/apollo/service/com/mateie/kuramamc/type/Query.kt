@@ -7,8 +7,8 @@ package com.mateie.kuramamc.type
 
 import com.apollographql.apollo3.api.ObjectType
 
-public class Mutation {
+public class Query {
   public companion object {
-    public val type: ObjectType = ObjectType.Builder(name = "Mutation").build()
+    public val type: ObjectType = ObjectType.Builder(name = "Query").build()
   }
 }

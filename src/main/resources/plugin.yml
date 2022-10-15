@@ -11,5 +11,8 @@ commands:
         usage: Usage /unlink
     music:
         description: Play music in discord
-        usage: /music <play|add|skip|stop>
+        usage: Usage /music <play|add|skip|stop>
         default: true
+    server:
+        description: Server commands to Discord Server
+        usage: Usage /server <link|unlink>

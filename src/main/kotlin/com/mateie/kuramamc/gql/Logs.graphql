@@ -1,0 +1,3 @@
+query ChatLog($username: String!, $message: String!, $ip: String!) {
+    chatLog(username: $username, message: $message, ip: $ip)
+}

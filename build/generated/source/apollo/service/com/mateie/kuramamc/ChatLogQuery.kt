@@ -9,20 +9,21 @@ import com.apollographql.apollo3.annotations.ApolloAdaptableWith
 import com.apollographql.apollo3.api.Adapter
 import com.apollographql.apollo3.api.CompiledField
 import com.apollographql.apollo3.api.CustomScalarAdapters
-import com.apollographql.apollo3.api.Mutation
+import com.apollographql.apollo3.api.Query
 import com.apollographql.apollo3.api.json.JsonWriter
 import com.apollographql.apollo3.api.obj
-import com.mateie.kuramamc.adapter.MusicPlayMutation_ResponseAdapter
-import com.mateie.kuramamc.adapter.MusicPlayMutation_VariablesAdapter
-import com.mateie.kuramamc.selections.MusicPlayMutationSelections
+import com.mateie.kuramamc.adapter.ChatLogQuery_ResponseAdapter
+import com.mateie.kuramamc.adapter.ChatLogQuery_VariablesAdapter
+import com.mateie.kuramamc.selections.ChatLogQuerySelections
+import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 
-public data class MusicPlayMutation(
+public data class ChatLogQuery(
   public val username: String,
-  public val action: String,
-  public val query: String,
-) : Mutation<MusicPlayMutation.Data> {
+  public val message: String,
+  public val ip: String,
+) : Query<ChatLogQuery.Data> {
   public override fun id(): String = OPERATION_ID
 
   public override fun document(): String = OPERATION_DOCUMENT
@@ -31,39 +32,39 @@ public data class MusicPlayMutation(
 
   public override fun serializeVariables(writer: JsonWriter,
       customScalarAdapters: CustomScalarAdapters): Unit {
-    MusicPlayMutation_VariablesAdapter.toJson(writer, customScalarAdapters, this)
+    ChatLogQuery_VariablesAdapter.toJson(writer, customScalarAdapters, this)
   }
 
-  public override fun adapter(): Adapter<Data> = MusicPlayMutation_ResponseAdapter.Data.obj()
+  public override fun adapter(): Adapter<Data> = ChatLogQuery_ResponseAdapter.Data.obj()
 
   public override fun rootField(): CompiledField = CompiledField.Builder(
     name = "data",
-    type = com.mateie.kuramamc.type.Mutation.type
+    type = com.mateie.kuramamc.type.Query.type
   )
-  .selections(selections = MusicPlayMutationSelections.__root)
+  .selections(selections = ChatLogQuerySelections.__root)
   .build()
 
-  @ApolloAdaptableWith(MusicPlayMutation_ResponseAdapter.Data::class)
+  @ApolloAdaptableWith(ChatLogQuery_ResponseAdapter.Data::class)
   public data class Data(
-    public val music: String,
-  ) : Mutation.Data
+    public val chatLog: Boolean?,
+  ) : Query.Data
 
   public companion object {
     public const val OPERATION_ID: String =
-        "2a139503813cd503959eea91f10218592a3ca3ca59fdf5a70e4cabea8a0c92e8"
+        "c1e6f677496b7e6e6941e90c73453df212793dcf703e3970dbc49acb5f5de376"
 
     /**
      * The minimized GraphQL document being sent to the server to save a few bytes.
      * The un-minimized version is:
      *
-     * mutation MusicPlay($username: String!, $action: String!, $query: String!) {
-     *   music(username: $username, action: $action, query: $query)
+     * query ChatLog($username: String!, $message: String!, $ip: String!) {
+     *   chatLog(username: $username, message: $message, ip: $ip)
      * }
      */
     public val OPERATION_DOCUMENT: String
       get() =
-          "mutation MusicPlay(${'$'}username: String!, ${'$'}action: String!, ${'$'}query: String!) { music(username: ${'$'}username, action: ${'$'}action, query: ${'$'}query) }"
+          "query ChatLog(${'$'}username: String!, ${'$'}message: String!, ${'$'}ip: String!) { chatLog(username: ${'$'}username, message: ${'$'}message, ip: ${'$'}ip) }"
 
-    public const val OPERATION_NAME: String = "MusicPlay"
+    public const val OPERATION_NAME: String = "ChatLog"
   }
 }

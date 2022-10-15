@@ -1,9 +1,7 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.20'
     id 'com.github.johnrengelman.shadow' version '2.0.4'
-    id "com.apollographql.apollo3" version "3.5.0"
+    id "com.apollographql.apollo3" version "3.6.1"
 }
 
 group = 'com.mateie'
@@ -12,22 +10,19 @@ version = '1.0'
 repositories {
     mavenCentral()
     maven {
-        name = 'papermc-repo'
-        url = 'https://repo.papermc.io/repository/maven-public/'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
     }
-    maven {
-        name = 'sonatype'
-        url = 'https://oss.sonatype.org/content/groups/public/'
-    }
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
 }
 
 dependencies {
-    compileOnly 'io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT'
+    compileOnly 'org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
     implementation 'io.github.cdimascio:dotenv-kotlin:6.3.1'
-    implementation 'org.jetbrains.kotlin:kotlin-script-runtime:1.7.10'
-    implementation 'com.apollographql.apollo3:apollo-runtime:3.5.0'
-    implementation 'com.github.shynixn.mccoroutine:mccoroutine-bukkit-api:2.4.0'
-    implementation 'com.github.shynixn.mccoroutine:mccoroutine-bukkit-core:2.4.0'
+    implementation 'org.jetbrains.kotlin:kotlin-script-runtime:1.7.20'
+    implementation 'com.apollographql.apollo3:apollo-runtime:3.6.1'
+    implementation 'com.github.shynixn.mccoroutine:mccoroutine-bukkit-api:2.5.0'
+    implementation 'com.github.shynixn.mccoroutine:mccoroutine-bukkit-core:2.5.0'
 }
 
 apollo {

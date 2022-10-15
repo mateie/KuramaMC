@@ -1,10 +1,15 @@
 type Query {
-  fetchUsers: [String!]!
+  chatLog(username: String!, message: String!, ip: String!): Boolean
+
+  fetchUsers: String!
 }
 
 type Mutation {
-  linkMinecraft(username: String!, code: String!): String!
-  unlinkMinecraft(username: String!): String!
+  linkServer(code: String!, ip: String!): String!
+
+  checkPlayer(username: String!): Boolean!
+  linkPlayer(username: String!, code: String!): String!
+  unlinkPlayer(username: String!): String!
 
   music(username: String!, action: String!, query: String): String!
 }

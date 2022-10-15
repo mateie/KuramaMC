@@ -9,18 +9,17 @@ import com.apollographql.apollo3.api.CompiledArgument
 import com.apollographql.apollo3.api.CompiledField
 import com.apollographql.apollo3.api.CompiledSelection
 import com.apollographql.apollo3.api.CompiledVariable
-import com.apollographql.apollo3.api.notNull
-import com.mateie.kuramamc.type.GraphQLString
+import com.mateie.kuramamc.type.GraphQLBoolean
 import kotlin.collections.List
 
-public object MusicPlayMutationSelections {
+public object ChatLogQuerySelections {
   public val __root: List<CompiledSelection> = listOf(
         CompiledField.Builder(
-          name = "music",
-          type = GraphQLString.type.notNull()
+          name = "chatLog",
+          type = GraphQLBoolean.type
         ).arguments(listOf(
-          CompiledArgument.Builder("action", CompiledVariable("action")).build(),
-          CompiledArgument.Builder("query", CompiledVariable("query")).build(),
+          CompiledArgument.Builder("ip", CompiledVariable("ip")).build(),
+          CompiledArgument.Builder("message", CompiledVariable("message")).build(),
           CompiledArgument.Builder("username", CompiledVariable("username")).build()
         ))
         .build()

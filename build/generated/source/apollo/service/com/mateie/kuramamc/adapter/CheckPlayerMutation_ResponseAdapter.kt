@@ -6,42 +6,43 @@
 package com.mateie.kuramamc.adapter
 
 import com.apollographql.apollo3.api.Adapter
+import com.apollographql.apollo3.api.BooleanAdapter
 import com.apollographql.apollo3.api.CustomScalarAdapters
-import com.apollographql.apollo3.api.StringAdapter
 import com.apollographql.apollo3.api.json.JsonReader
 import com.apollographql.apollo3.api.json.JsonWriter
-import com.mateie.kuramamc.MusicActionsMutation
+import com.mateie.kuramamc.CheckPlayerMutation
+import kotlin.Boolean
 import kotlin.String
 import kotlin.Unit
 import kotlin.collections.List
 
-public object MusicActionsMutation_ResponseAdapter {
-  public object Data : Adapter<MusicActionsMutation.Data> {
-    public val RESPONSE_NAMES: List<String> = listOf("music")
+public object CheckPlayerMutation_ResponseAdapter {
+  public object Data : Adapter<CheckPlayerMutation.Data> {
+    public val RESPONSE_NAMES: List<String> = listOf("checkPlayer")
 
     public override fun fromJson(reader: JsonReader, customScalarAdapters: CustomScalarAdapters):
-        MusicActionsMutation.Data {
-      var _music: String? = null
+        CheckPlayerMutation.Data {
+      var _checkPlayer: Boolean? = null
 
       while(true) {
         when (reader.selectName(RESPONSE_NAMES)) {
-          0 -> _music = StringAdapter.fromJson(reader, customScalarAdapters)
+          0 -> _checkPlayer = BooleanAdapter.fromJson(reader, customScalarAdapters)
           else -> break
         }
       }
 
-      return MusicActionsMutation.Data(
-        music = _music!!
+      return CheckPlayerMutation.Data(
+        checkPlayer = _checkPlayer!!
       )
     }
 
     public override fun toJson(
       writer: JsonWriter,
       customScalarAdapters: CustomScalarAdapters,
-      `value`: MusicActionsMutation.Data,
+      `value`: CheckPlayerMutation.Data,
     ): Unit {
-      writer.name("music")
-      StringAdapter.toJson(writer, customScalarAdapters, value.music)
+      writer.name("checkPlayer")
+      BooleanAdapter.toJson(writer, customScalarAdapters, value.checkPlayer)
     }
   }
 }

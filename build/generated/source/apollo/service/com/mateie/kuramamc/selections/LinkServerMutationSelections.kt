@@ -13,15 +13,14 @@ import com.apollographql.apollo3.api.notNull
 import com.mateie.kuramamc.type.GraphQLString
 import kotlin.collections.List
 
-public object MusicPlayMutationSelections {
+public object LinkServerMutationSelections {
   public val __root: List<CompiledSelection> = listOf(
         CompiledField.Builder(
-          name = "music",
+          name = "linkServer",
           type = GraphQLString.type.notNull()
         ).arguments(listOf(
-          CompiledArgument.Builder("action", CompiledVariable("action")).build(),
-          CompiledArgument.Builder("query", CompiledVariable("query")).build(),
-          CompiledArgument.Builder("username", CompiledVariable("username")).build()
+          CompiledArgument.Builder("code", CompiledVariable("code")).build(),
+          CompiledArgument.Builder("ip", CompiledVariable("ip")).build()
         ))
         .build()
       )
